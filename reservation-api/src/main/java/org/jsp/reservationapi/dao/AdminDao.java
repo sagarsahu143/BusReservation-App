@@ -27,6 +27,9 @@ public class AdminDao {
 		return adminRepository.findById(id);
 
 	}
+	public Optional<Admin> verify(String email,String password) {
+		return adminRepository.findByEmailAndPassword(email, password);
+	}
 	
 	public List<Admin> findAll() {
 		return adminRepository.findAll();

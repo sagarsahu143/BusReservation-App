@@ -67,6 +67,22 @@ public class AdminService {
 
 		throw new AdminNotFoundException(" Cannot Find Admin as Id is Invalid ");
 	}
+	
+	
+	public ResponseEntity<ResponseStructor<AdminResponse>> verify(String email,String password) {
+		ResponseStructor<AdminResponse> structor = new ResponseStructor<>();
+
+		Optional<Admin> admins = adminDao.verify(email, password);
+		if (admins.isPresent()) {
+			structor.setMessage("Admin found");
+			structor.setData(mapToResponse(admins.get()));
+			structor.setStatusCode(HttpStatus.OK.value());
+			return ResponseEntity.status(HttpStatus.OK).body(structor);
+		}
+
+		throw new AdminNotFoundException(" Cannot Find Admin as email and password is Invalid ");
+	}
+
 
 	public ResponseEntity<ResponseStructor<List<Admin>>> findAll() {
 		ResponseStructor<List<Admin>> structor = new ResponseStructor<>();
@@ -103,7 +119,7 @@ public class AdminService {
 
 	private AdminResponse mapToResponse(Admin admin) {
 		return AdminResponse.builder().name(admin.getName()).email(admin.getEmail()).gst_number(admin.getGst_number())
-				.phone(admin.getPhone()).travels_name(admin.getTravels_name()).password(admin.getPassword()).build();
+				.phone(admin.getPhone()).travels_name(admin.getTravels_name()).password(admin.getPassword()).id(admin.getId()).build();
 	}
 	
 
