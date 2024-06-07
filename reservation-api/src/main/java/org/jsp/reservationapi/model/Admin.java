@@ -2,6 +2,8 @@ package org.jsp.reservationapi.model;
 
 import java.util.List;
 
+import ch.qos.logback.core.subst.Token.Type;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,8 +41,12 @@ public class Admin {
 	@Column(nullable = false)
 
 	private String travels_name;
+	@Column(nullable = false)
+	private String status;
 
-	@OneToMany(mappedBy = "admins")
+	private String token;
+
+	@OneToMany(mappedBy = "admins",cascade = CascadeType.REMOVE)  //,cascade = CascadeType.ALL
 	private List<Bus> buss;
 
 }

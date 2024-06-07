@@ -2,6 +2,7 @@ package org.jsp.reservationapi.dao;
 
 import java.util.Optional;
 
+import org.jsp.reservationapi.model.Admin;
 import org.jsp.reservationapi.model.User;
 import org.jsp.reservationapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,21 @@ public class UserDao {
 		userRepository.deleteById(id);
 	}
 	
-	
 	public Optional<User> verify(int id, String password) {
 		return userRepository.findByIdAndPassword(id, password);
 	}
 	public Optional<User> verify(String email, String password) {
 		return userRepository.findByEmailAndPassword(email, password);
 	}
+	public Optional<User> findByToken(String token) {
+		return userRepository.findByToken(token);
+	}
+	
+	
+	public Optional<User> findByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+
+	
 	
 }

@@ -1,32 +1,31 @@
 package org.jsp.reservationapi.dto;
 
-import java.util.List;
+import java.time.LocalDate;
 
+import org.jsp.reservationapi.model.Admin;
 import org.jsp.reservationapi.model.Bus;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class AdminResponse {
+public class BusRequest{
+
+	
 	private int id;
 	private String name;
-
-	private String email;
-
-	private String gst_number;
-
-	private long phone;
-
-	private String password;
-
-	private String travels_name;
+	private LocalDate depature_date;
+	private String bus_no;
+	private String form_loc;
+	private String to_loc;
+	private int total_seat;
+	private double cost;
+//	private int avalable_seat;
 
 }

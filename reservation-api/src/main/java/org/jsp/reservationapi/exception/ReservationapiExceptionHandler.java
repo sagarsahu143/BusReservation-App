@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.message.Message;
+import org.eclipse.angus.mail.handlers.handler_base;
 import org.jsp.reservationapi.dto.ResponseStructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,33 @@ public class ReservationapiExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(structor);
 	}
 	
+	@ExceptionHandler(BusNotFoundException.class)
+	public ResponseEntity<ResponseStructor<String>> handle(BusNotFoundException exception) {
+		
+		ResponseStructor<String> structor=new ResponseStructor<>();
+		structor.setData(exception.getMessage());
+		structor.setMessage("Bus Not Found");
+		structor.setStatusCode(HttpStatus.NOT_FOUND.value());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(structor);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+	@ExceptionHandler(IllegalStateException.class)
+	public ResponseStructor<String> handler(IllegalThreadStateException exception) {
+		
+		ResponseStructor<String> structor=new ResponseStructor<>();
+		structor.setData("cannot sign up");
+		structor.setMessage(exception.getMessage());
+		structor.setStatusCode(HttpStatus.UNAUTHORIZED.value());
+		return structor;
+	}
 	
 	
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)

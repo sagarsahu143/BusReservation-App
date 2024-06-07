@@ -13,14 +13,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdminRequest {
-	@NotBlank(message = "name is mendatory")
+	@NotBlank(message = "Name is mandatory")
 	private String name;
 	private long phone;
-	@Email
+	@Email(message = "Invalid Format")
 	@NotBlank(message = "Email is mendatory")
 	private String email;
 	@NotBlank (message = "Gst is mendatory")
-	@Size(min =15,max=15 ,message = "Gst number mus have 15 character")
+	@Size(min =10,max=15,message = "Gst number mus have 15 character")
 	private String gst_number;
 	@NotBlank(message = "Password is mendatory")
 	@Size(min = 8 ,max =10,message = "password mus have 8 to 1o digit")

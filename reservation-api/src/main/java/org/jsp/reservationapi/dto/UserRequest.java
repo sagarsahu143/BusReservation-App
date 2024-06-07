@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class UserRequest {
       @NotBlank(message = "name is mendatory")
 	private String name;
-      @Email
+      @Email(message = "Invalid Format")
       @NotBlank(message = "Email is mendatory")
 	private String email;
 	private long phone;
